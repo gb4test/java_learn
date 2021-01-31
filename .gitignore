@@ -13,3 +13,9 @@ gradle-app.setting
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
 .idea/workspace.xml
+*.class
+sandbox/src/main/java/ru/stqa/pft/sandbox/Rectangle.java
+sandbox/src/main/java/ru/stqa/pft/sandbox/MyFirstProgram.java
+sandbox/out/production/classes/ru/stqa/pft/sandbox/MyFirstProgram.class
+sandbox/src/main/java/ru/stqa/pft/sandbox/MyFirstProgram.java
+sandbox/src/main/java/ru/stqa/pft/sandbox/MyFirstProgram.java
