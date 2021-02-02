@@ -4,11 +4,24 @@ public class Point {
 
     public static void main(String[] args) {
 
-        Coord p1 = new Coord(1, 3);
-        Coord p2 = new Coord(5, 1);
+        Point p1 = new Point(1, 3);
+        Point p2 = new Point(5, 1);
 
         System.out.println("Расстояние между двумя точками на плоскости = " +
-                p1.distance(p2));
+                p1.distance(p2  ));
     }
+
+        public double x;
+        public double y;
+
+        public Point(double x, double y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        public double distance(Point other) {
+            return Math.sqrt((Math.pow((other.x - this.x), 2)) +
+                    (Math.pow((other.y - this.y), 2)));
+        }
 
 }
