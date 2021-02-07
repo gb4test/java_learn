@@ -30,4 +30,12 @@ public class ContactHelper extends HelperBase {
         type(By.name("email2"), contactData.getEmail2());
         type(By.name("email3"), contactData.getEmail3());
     }
+
+    public void selectContact() { click(By.name("selected[]")); }
+
+    public void deleteContact() { click(By.xpath("//input[@value='Delete']")); }
+
+    public void isAlertAccept( ) { wd.switchTo().alert().accept(); }
+
+
 }
