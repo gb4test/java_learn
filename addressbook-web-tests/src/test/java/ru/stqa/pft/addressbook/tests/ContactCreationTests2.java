@@ -6,13 +6,13 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.stqa.pft.addressbook.model.ContactData;
 
-public class ContactCreationTests2 {
+public class ContactCreationTests2 extends TestBase {
   private WebDriver wd;
 
   @BeforeClass(alwaysRun = true)
-  public void setUp() throws Exception {
+  public void setUp() {
     wd = new FirefoxDriver();
-    wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
     wd.get("http://localhost/addressbook/group.php");
     login("admin", "secret");
   }
@@ -28,12 +28,24 @@ public class ContactCreationTests2 {
 
   @Test
   public void testContactCreation() {
-    wd.findElement(By.linkText("add new")).click();
+    addNewContact();
+    fillContactForm(new ContactData("ret", "rew", "trry.jfhj, khaf 54",
+            "46546", "4533", "4664", "4",
+            "dfsdf@sca.adf", "dgagddg.sdg@dsf.fgr", "afdf@dfda.sdv"));
+    submit();
+    goToHomePage();
+  }
 
-    fillContactForm(new ContactData("ret", "rew", "trry.jfhj, khaf 54", "46546", "4533", "4664", "4", "dfsdf@sca.adf", "dgagddg.sdg@dsf.fgr", "afdf@dfda.sdv"));
-
-    wd.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
+  private void goToHomePage() {
     wd.findElement(By.linkText("home page")).click();
+  }
+
+  private void submit() {
+    wd.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
+  }
+
+  private void addNewContact() {
+    wd.findElement(By.linkText("add new")).click();
   }
 
   private void fillContactForm(ContactData contactData) {
