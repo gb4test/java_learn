@@ -1,4 +1,4 @@
-package ru.stqa.pft.addressbook;
+package ru.stqa.pft.addressbook.notforshare;
 
 import java.util.concurrent.TimeUnit;
 

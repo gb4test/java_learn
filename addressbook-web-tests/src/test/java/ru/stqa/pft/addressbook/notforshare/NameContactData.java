@@ -1,4 +1,4 @@
-package ru.stqa.pft.addressbook;
+package ru.stqa.pft.addressbook.notforshare;
 
 public class NameContactData {
     private final String first_name;

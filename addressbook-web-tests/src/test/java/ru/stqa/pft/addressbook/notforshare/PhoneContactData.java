@@ -1,4 +1,4 @@
-package ru.stqa.pft.addressbook;
+package ru.stqa.pft.addressbook.notforshare;
 
 public class PhoneContactData {
     private final String home_phone;
