@@ -49,4 +49,17 @@ public class ContactHelper extends HelperBase {
     public void initContactModification() { click(By.xpath("//img[@alt='Edit']")); }
 
     public void updateContactModification() { click(By.name( "update"));}
+
+    public void goToHomePage() { click(By.linkText("home page")); }
+
+    public void createContact(ContactData contact, boolean b) {
+        addNewContact();
+        fillContactForm(contact, true);
+        submitContactCreation();
+        goToHomePage();
+    }
+
+    public boolean isThereAContact() {
+        return isElementPresent(By.name("selected[]"));
+    }
 }
