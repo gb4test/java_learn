@@ -9,11 +9,14 @@ public class ContactModificationTests extends TestBase {
     public void testContactModification() {
         app.getNavigationHelper().goToHome();
         if (! app.getContactHelper().isThereAContact()) {
+            app.getNavigationHelper().goToGroupPage();
+            app.getGroupHelper().checkGroup();
             app.getContactHelper().createContact(new ContactData("Ooo", " rew",
                     "trry.jfhj, khaf 54",
                     "46546", "4533", "4664", "4",
                     "dfsdf@sca.adf", "dgagddg.sdg@dsf.fgr", "afdf@dfda.sdv", "test"), true);
         }
+        app.getNavigationHelper().goToHome();
         app.getContactHelper().initContactModification();
         app.getContactHelper().fillContactForm(new ContactData("new", "t",
                 "Florida, 5 avenu, 954-56",
