@@ -62,4 +62,18 @@ public class ContactHelper extends HelperBase {
     public boolean isThereAContact() {
         return isElementPresent(By.name("selected[]"));
     }
+
+    public int getContactCount() {
+        return wd.findElements(By.name("selected[]")).size();
+    }
+
+    public void checkContact() {
+        if (! isThereAContact()) {
+            createContact(new ContactData("ret", " rew",
+                    "trry.jfhj, khaf 54",
+                    "46546", "4533", "4664", "4",
+                    "dfsdf@sca.adf", "dgagddg.sdg@dsf.fgr", "afdf@dfda.sdv", "test"), true);
+        }
+    }
+
 }
