@@ -11,7 +11,7 @@ public class ContactData {
     private final String email;
     private final String email2;
     private final String email3;
-    private String group;
+    private final String group;
 
     public ContactData(String firstname, String lastname, String address,
                        String home_phone, String mobile_phone, String work_phone, String fax,
