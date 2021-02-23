@@ -4,25 +4,31 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 
+import java.util.List;
+
 public class ContactModificationTests extends TestBase {
 
     @Test
     public void testContactModification() {
-        app.getNavigationHelper().goToGroupPage();
-        app.getGroupHelper().checkGroup();
+
+        if (! app.getContactHelper().isThereAContact()) {
+            app.getNavigationHelper().goToGroupPage();
+            app.getGroupHelper().checkGroup();
+            app.getContactHelper().createContact(new ContactData("Lui", " rew",
+                    "N.n, n  54", "46546", "4533", "4664", "4",
+                    "dfsdf@sca.adf", "dgagddg.sdg@dsf.fgr", "afdf@dfda.sdv", "test"), true);
+        }
         app.getNavigationHelper().goToHome();
-        app.getContactHelper().checkContact();
-        app.getNavigationHelper().goToHome();
-        int before = app.getContactHelper().getContactCount();
+        List<ContactData> before = app.getContactHelper().getContactList();
+        app.getContactHelper().selectContact(before.size() - 2);
         app.getContactHelper().initContactModification();
-        app.getContactHelper().fillContactForm(new ContactData("new", "t",
+        app.getContactHelper().fillContactForm(new ContactData("ASDFGHJKL", "KJHGF",
                 "Florida, 5 avenu, 954-56",
                 "1", "11", "111", "1",
-                "111@sca.adf", "111.sdg@dsf.fgr", "11@dfda.sdv", null),
-                false);
+                "111@sca.adf", "111.sdg@dsf.fgr", "11@dfda.sdv", null), false);
         app.getContactHelper().updateContactModification();
         app.getNavigationHelper().goToHomePage();
-        int after = app.getContactHelper().getContactCount();
-        Assert.assertEquals(after, before);
+        List<ContactData> after = app.getContactHelper().getContactList();
+        Assert.assertEquals(after.size(), before.size());
     }
 }
