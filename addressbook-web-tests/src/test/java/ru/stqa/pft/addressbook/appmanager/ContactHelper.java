@@ -35,13 +35,11 @@ public class ContactHelper extends HelperBase {
         type(By.name("email"), contactData.getEmail());
         type(By.name("email2"), contactData.getEmail2());
         type(By.name("email3"), contactData.getEmail3());
-
         if (creation) {
             new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
         } else {
             Assert.assertFalse(isElementPresent(By.name("new_group")));
         }
-
     }
 
     public void selectContact(int index) {
@@ -52,7 +50,9 @@ public class ContactHelper extends HelperBase {
 
     public void isAlertAccept() { wd.switchTo().alert().accept(); }
 
-    public void initContactModification() { click(By.xpath("(//img[@alt='Edit'])")); }
+    public void initContactModificationById(int index) {
+        wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
+    }
 
     public void updateContactModification() { click(By.name( "update"));}
 
