@@ -22,7 +22,7 @@ public class ContactModificationTests extends TestBase {
         app.getNavigationHelper().goToHome();
         List<ContactData> before = app.getContactHelper().getContactList();
         app.getContactHelper().initContactModificationById(before.size() - 1);
-        ContactData contact = new ContactData("ASDF", "KJHcfdhdhGF",
+        ContactData contact = new ContactData(before.get(before.size() - 1).getId(), "ASDF", "KJHcfdhdhGF",
                 "Florida, 5 avenu, 954-56",
                 "1", "11", "111", "1",
                 "111@sca.adf", "111.sdg@dsf.fgr", "11@dfda.sdv", null);
@@ -33,7 +33,9 @@ public class ContactModificationTests extends TestBase {
         Assert.assertEquals(after.size(), before.size());
 
         before.remove(before.size() - 1);
-        before.add(contact);
+        before.add(contact); 
+        System.out.println(before);
+        System.out.println(after);
         Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
     }
 }
