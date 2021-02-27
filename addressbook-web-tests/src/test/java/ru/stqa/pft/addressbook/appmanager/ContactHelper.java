@@ -33,7 +33,10 @@ public class ContactHelper extends HelperBase {
 
     public void choose(int id) { wd.findElement(By.xpath("//a[@href='edit.php?id=" + id + "']")).click(); }
 
-    public void update() { click(By.name( "update"));}
+    public void update() {
+        click(By.name( "update"));
+        goToHomePage();
+    }
 
     public void goToHomePage() { click(By.linkText("home page")); }
 
@@ -57,17 +60,12 @@ public class ContactHelper extends HelperBase {
         type(By.name("email"), contactData.getEmail());
         type(By.name("email2"), contactData.getEmail2());
         type(By.name("email3"), contactData.getEmail3());
-
-
+        
         if (creation) {
             new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
         } else {
             Assert.assertFalse(isElementPresent(By.name("new_group")));
         }
-
-        update();
-        goToHomePage();
-
     }
 
     public void delete(ContactData contact) {
@@ -93,7 +91,6 @@ public class ContactHelper extends HelperBase {
         return contacts;
     }
 
-
     public boolean isThereAContact() {
         return isElementPresent(By.name("selected[]"));
     }
@@ -101,6 +98,4 @@ public class ContactHelper extends HelperBase {
     public int getContactCount() {
         return wd.findElements(By.name("selected[]")).size();
     }
-
-
 }

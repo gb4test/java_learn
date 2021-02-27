@@ -36,6 +36,7 @@ public class ContactModificationTests extends TestBase {
                         .withEmail3("afdf@dfda.sdv");
 
         app.contact().modify(contact, false);
+        app.contact().update();
         Set<ContactData> after = app.contact().all();
         Assert.assertEquals(after.size(), before.size());
 
