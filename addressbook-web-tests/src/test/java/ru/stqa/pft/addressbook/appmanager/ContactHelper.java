@@ -12,41 +12,6 @@ import java.util.List;
 
 public class ContactHelper extends HelperBase {
 
-    public ContactHelper(WebDriver wd) {
-        super(wd);
-    }
-
-    public void addNewContact() {
-        click(By.linkText("add new"));
-    }
-
-    public void submitContactCreation() {
-        click(By.xpath("(//input[@name='submit'])[2]"));
-    }
-
-    public void delete() { click(By.xpath("//input[@value='Delete']")); }
-
-    public void selectContactById(int id) { wd.findElement(By.cssSelector("input[value='" + id + "']")).click(); }
-
-    public void isAlertAccept() { wd.switchTo().alert().accept(); }
-
-    public void selectById(int id) {
-        wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
-    }
-    // { wd.findElement(By.xpath("//a[@href='edit.php?id=" + id + "']")).click(); }
-    // wd.findElement(By.xpath(String.format("//input[@value='%s']/../../td[8]/a", id))).click();
-    // wd.findElement(By.xpath(String.format("//tr[.//input[@value='%s']]/td[8]/a", id))).click();
-
-    public void update() {
-        click(By.name( "update"));
-        contactCache = null;
-        goToHomePage();
-    }
-
-    public void goToHomePage() { click(By.linkText("home page")); }
-
-    public void goToHome() { click(By.linkText("home")); }
-
     public void create(ContactData contact, boolean b) {
         addNewContact();
         modify(contact, true);
@@ -74,6 +39,12 @@ public class ContactHelper extends HelperBase {
         }
     }
 
+    public void update() {
+        click(By.name( "update"));
+        contactCache = null;
+        goToHomePage();
+    }
+
     public void delete(ContactData contact) {
         selectContactById(contact.getId());
         delete();
@@ -81,6 +52,35 @@ public class ContactHelper extends HelperBase {
         contactCache = null;
         goToHome();
     }
+
+    public ContactHelper(WebDriver wd) {
+        super(wd);
+    }
+
+    public void addNewContact() {
+        click(By.linkText("add new"));
+    }
+
+    public void submitContactCreation() {
+        click(By.xpath("(//input[@name='submit'])[2]"));
+    }
+
+    public void delete() { click(By.xpath("//input[@value='Delete']")); }
+
+    public void selectContactById(int id) { wd.findElement(By.cssSelector("input[value='" + id + "']")).click(); }
+
+    public void isAlertAccept() { wd.switchTo().alert().accept(); }
+
+    public void selectById(int id) {
+        wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
+    }
+    // { wd.findElement(By.xpath("//a[@href='edit.php?id=" + id + "']")).click(); }
+    // wd.findElement(By.xpath(String.format("//input[@value='%s']/../../td[8]/a", id))).click();
+    // wd.findElement(By.xpath(String.format("//tr[.//input[@value='%s']]/td[8]/a", id))).click();
+
+    public void goToHomePage() { click(By.linkText("home page")); }
+
+    public void goToHome() { click(By.linkText("home")); }
 
     private Contacts contactCache = null;
 
@@ -96,9 +96,11 @@ public class ContactHelper extends HelperBase {
             int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
             String lastName = cells.get(1).getText();
             String firstName = cells.get(2).getText();
-            String[] phones = cells.get(5).getText().split("\n");
+            String allPhones = cells.get(5).getText();
+            String allEmails = cells.get(4).getText();
             contactCache.add(new ContactData().withId(id).withFirstname(firstName).withLastname(lastName)
-                    .withHome_phone(phones[0]).withMobile_phone(phones[1]).withWork_phone(phones[2]));
+                    .withAllEmails(allEmails)
+                    .withAllPhones(allPhones));
         }
         return new Contacts(contactCache);
     }
