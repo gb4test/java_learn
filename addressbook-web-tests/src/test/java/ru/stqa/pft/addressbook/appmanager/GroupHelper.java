@@ -10,6 +10,30 @@ import java.util.List;
 
 public class GroupHelper extends HelperBase {
 
+    public void create(GroupData group) {
+        initGroupCreation();
+        fillGroupForm(group);
+        submitGroupCreation();
+        groupCache = null;
+        returnToGroupPage();
+    }
+
+    public void modify(GroupData group) {
+        selectGroupById(group.getId());
+        initGroupModification();
+        fillGroupForm(group);
+        submitGroupModification();
+        groupCache = null;
+        returnToGroupPage();
+    }
+
+    public void delete(GroupData group) {
+        selectGroupById(group.getId());
+        deleteSelectedGroups();
+        groupCache = null;
+        returnToGroupPage();
+    }
+
     public GroupHelper(WebDriver wd) {
         super(wd);
     }
@@ -44,37 +68,11 @@ public class GroupHelper extends HelperBase {
 
     public void submitGroupModification() { click(By.name("update"));}
 
-    public void create(GroupData group) {
-        initGroupCreation();
-        fillGroupForm(group);
-        submitGroupCreation();
-        groupCache = null;
-        returnToGroupPage();
-    }
-
-    public void modify(GroupData group) {
-        selectGroupById(group.getId());
-        initGroupModification();
-        fillGroupForm(group);
-        submitGroupModification();
-        groupCache = null;
-        returnToGroupPage();
-    }
-
-    public void delete(GroupData group) {
-        selectGroupById(group.getId());
-        deleteSelectedGroups();
-        groupCache = null;
-        returnToGroupPage();
-    }
-
     public boolean isThereAGroup() {
         return isElementPresent(By.name("selected[]"));
     }
 
-    public int count() {
-        return wd.findElements(By.name("selected[]")).size();
-    }
+    public int count() { return wd.findElements(By.name("selected[]")).size(); }
 
     public void check() {
         if (all().size() == 0) {
@@ -98,6 +96,4 @@ public class GroupHelper extends HelperBase {
         }
         return new Groups(groupCache);
     }
-
-
 }
