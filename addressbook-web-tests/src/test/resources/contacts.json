@@ -1,0 +1,44 @@
+[
+  {
+    "firstname": "firstName 0",
+    "lastname": "lastName 0",
+    "address": "address 0",
+    "home_phone": "885-54-857 0",
+    "mobile_phone": "+7(495) 254-98-98 0",
+    "work_phone": "78 78 78 0",
+    "fax": "885-54-857 0",
+    "email": "0_dfhdh@gmail.com",
+    "email2": "0.sfsf@awd.ru",
+    "email3": "0-SAFF@jsf.snj",
+    "group": "test",
+    "photo": {}
+  },
+  {
+    "firstname": "firstName 1",
+    "lastname": "lastName 1",
+    "address": "address 1",
+    "home_phone": "885-54-857 1",
+    "mobile_phone": "+7(495) 254-98-98 1",
+    "work_phone": "78 78 78 1",
+    "fax": "885-54-857 1",
+    "email": "1_dfhdh@gmail.com",
+    "email2": "1.sfsf@awd.ru",
+    "email3": "1-SAFF@jsf.snj",
+    "group": "test",
+    "photo": {}
+  },
+  {
+    "firstname": "firstName 2",
+    "lastname": "lastName 2",
+    "address": "address 2",
+    "home_phone": "885-54-857 2",
+    "mobile_phone": "+7(495) 254-98-98 2",
+    "work_phone": "78 78 78 2",
+    "fax": "885-54-857 2",
+    "email": "2_dfhdh@gmail.com",
+    "email2": "2.sfsf@awd.ru",
+    "email3": "2-SAFF@jsf.snj",
+    "group": "test",
+    "photo": {}
+  }
+]
