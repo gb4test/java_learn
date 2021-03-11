@@ -83,20 +83,37 @@ public class ContactDataGenerator {
     List<ContactData> contacts = new ArrayList<ContactData>();
     File photo = new File("src/test/resources/images.png");
     for (int i = 0; i < count; i++) {
-      contacts.add(new ContactData()
-          .withFirstname(String.format("firstName %s", i))
-          .withLastname(String.format("lastName %s", i))
-          .withPhoto(photo)
-          .withAddress(String.format("address %s", i))
-          .withHome_phone(String.format("885-54-857 %s", i))
-          .withMobile_phone(String.format("+7(495) 254-98-98 %s", i))
-          .withWork_phone(String.format("78 78 78 %s", i))
-          .withFax(String.format("885-54-857 %s", i))
-          .withEmail(String.format("%s_dfhdh@gmail.com", i))
-          .withEmail2(String.format("%s.sfsf@awd.ru", i))
-          .withEmail3(String.format("%s-SAFF@jsf.snj", i))
-          .withGroup("test"));
+      if (format.equals("json")) {
+        contacts.add(new ContactData()
+            .withFirstname(String.format("firstName %s", i))
+            .withLastname(String.format("lastName %s", i))
+            .withAddress(String.format("address %s", i))
+            .withHome_phone(String.format("885-54-857 %s", i))
+            .withMobile_phone(String.format("+7(495) 254-98-98 %s", i))
+            .withWork_phone(String.format("78 78 78 %s", i))
+            .withFax(String.format("885-54-857 %s", i))
+            .withEmail(String.format("%s_dfhdh@gmail.com", i))
+            .withEmail2(String.format("%s.sfsf@awd.ru", i))
+            .withEmail3(String.format("%s-SAFF@jsf.snj", i))
+            .withGroup("test"));
+      } else {
+        contacts.add(new ContactData()
+            .withFirstname(String.format("firstName %s", i))
+            .withLastname(String.format("lastName %s", i))
+            .withPhoto(photo)
+            .withAddress(String.format("address %s", i))
+            .withHome_phone(String.format("885-54-857 %s", i))
+            .withMobile_phone(String.format("+7(495) 254-98-98 %s", i))
+            .withWork_phone(String.format("78 78 78 %s", i))
+            .withFax(String.format("885-54-857 %s", i))
+            .withEmail(String.format("%s_dfhdh@gmail.com", i))
+            .withEmail2(String.format("%s.sfsf@awd.ru", i))
+            .withEmail3(String.format("%s-SAFF@jsf.snj", i))
+            .withGroup("test"));
+      }
     }
     return contacts;
   }
 }
+
+//  -f src/test/resources/contacts.json -c 3 -d json
