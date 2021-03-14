@@ -87,3 +87,4 @@ public class GroupDataGenerator {
     return groups;
   }
 }
+//  -f src/test/resources/contacts.json -c 3 -d json

@@ -13,4 +13,18 @@
     <group>test</group>
     <photo>src\test\resources\images.png</photo>
   </ru.stqa.pft.addressbook.model.ContactData>
+  <ru.stqa.pft.addressbook.model.ContactData>
+    <firstname>firstName 1</firstname>
+    <lastname>lastName 1</lastname>
+    <address>address 1</address>
+    <home__phone>885-54-857 1</home__phone>
+    <mobile__phone>+7(495) 254-98-98 1</mobile__phone>
+    <work__phone>78 78 78 1</work__phone>
+    <fax>885-54-857 1</fax>
+    <email>1_dfhdh@gmail.com</email>
+    <email2>1.sfsf@awd.ru</email2>
+    <email3>1-SAFF@jsf.snj</email3>
+    <group>test</group>
+    <photo>src\test\resources\images.png</photo>
+  </ru.stqa.pft.addressbook.model.ContactData>
 </list>
