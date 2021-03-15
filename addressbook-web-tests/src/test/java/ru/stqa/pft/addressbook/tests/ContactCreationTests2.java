@@ -8,6 +8,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -55,17 +56,19 @@ public class ContactCreationTests2 extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions() {
-    app.goTo().groupPage();
-    app.group().check();
-    app.goTo().home();
+    if (app.db().groups().size() == 0) {
+      app.goTo().groupPage();
+      app.group().create(new GroupData().withName("test").withHeader("test").withFooter("test"));
+    }
   }
 
   @Test(dataProvider = "validContactsFromXml")
   public void testContactCreation(ContactData contact) {
-    Contacts before = app.contact().all();
+    app.goTo().home();
+    Contacts before = app.db().contacts();
     app.contact().create(contact, true);
     assertThat(app.contact().count(), equalTo(before.size() + 1));
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
     assertThat(after, equalTo(
         before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
   }
