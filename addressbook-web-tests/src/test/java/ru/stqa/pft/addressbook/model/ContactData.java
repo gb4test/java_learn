@@ -79,8 +79,6 @@ public class ContactData {
     @Transient
     private String allEmails;
 
-
-
     public File getPhoto() { return new File(photo); }
 
     public int getId() { return id; }
@@ -216,10 +214,10 @@ public class ContactData {
     @Override
     public String toString() {
         return "ContactData{" +
-                "id=" + id +
-                ", firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
-                '}';
+            "id=" + id +
+            ", firstname='" + firstname + '\'' +
+            ", lastname='" + lastname + '\'' +
+            '}';
     }
 
     @Override
