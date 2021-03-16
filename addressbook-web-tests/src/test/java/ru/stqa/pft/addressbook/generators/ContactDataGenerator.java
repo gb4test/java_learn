@@ -82,6 +82,7 @@ public class ContactDataGenerator {
   private List<ContactData> generateContacts(int count) {
     List<ContactData> contacts = new ArrayList<ContactData>();
     File photo = new File("src/test/resources/images.png");
+
     for (int i = 0; i < count; i++) {
       if (format.equals("json")) {
         contacts.add(new ContactData()
@@ -94,8 +95,7 @@ public class ContactDataGenerator {
             .withFax(String.format("885-54-857 %s", i))
             .withEmail(String.format("%s_dfhdh@gmail.com", i))
             .withEmail2(String.format("%s.sfsf@awd.ru", i))
-            .withEmail3(String.format("%s-SAFF@jsf.snj", i))
-            .withGroup("test"));
+            .withEmail3(String.format("%s-SAFF@jsf.snj", i)));
       } else {
         contacts.add(new ContactData()
             .withFirstname(String.format("firstName %s", i))
@@ -108,8 +108,7 @@ public class ContactDataGenerator {
             .withFax(String.format("885-54-857 %s", i))
             .withEmail(String.format("%s_dfhdh@gmail.com", i))
             .withEmail2(String.format("%s.sfsf@awd.ru", i))
-            .withEmail3(String.format("%s-SAFF@jsf.snj", i))
-            .withGroup("test"));
+            .withEmail3(String.format("%s-SAFF@jsf.snj", i)));
       }
     }
     return contacts;

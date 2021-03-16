@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.File;
 
@@ -20,12 +21,13 @@ public class ContactModificationTests extends TestBase {
       if (app.db().groups().size() == 0) {
         app.group().create(new GroupData().withName("test").withHeader("test").withFooter("test"));
       }
+      Groups groups = app.db().groups();
       app.contact().create(
           new ContactData().withFirstname("Now").withLastname("rew").withAddress("N.n, n54")
               .withHome_phone("255-25-25").withMobile_phone("4533").withWork_phone("4664")
               .withFax("4").withEmail("dfsdf@sca.adf").withEmail2("dgagddg.sdg@dsf.fgr")
               .withEmail3("afdf@dfda.sdv").withPhoto(new File("src/test/resources/images.png"))
-              .withGroup("test"), true);
+              .inGroup(groups.iterator().next()), true);
     }
   }
 
