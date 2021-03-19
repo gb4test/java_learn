@@ -231,7 +231,12 @@ public class ContactData {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ContactData that = (ContactData) o;
-        return id == that.id && Objects.equals(firstname, that.firstname) && Objects.equals(lastname, that.lastname) && Objects.equals(address, that.address) && Objects.equals(home_phone, that.home_phone) && Objects.equals(mobile_phone, that.mobile_phone) && Objects.equals(work_phone, that.work_phone) && Objects.equals(fax, that.fax) && Objects.equals(email, that.email) && Objects.equals(email2, that.email2) && Objects.equals(email3, that.email3);
+        return id == that.id && Objects.equals(firstname, that.firstname) && Objects.equals(lastname, that.lastname)
+            && Objects.equals(address, that.address) && Objects.equals(home_phone, that.home_phone)
+            && Objects.equals(mobile_phone, that.mobile_phone)
+            && Objects.equals(work_phone, that.work_phone)
+            && Objects.equals(fax, that.fax) && Objects.equals(email, that.email)
+            && Objects.equals(email2, that.email2) && Objects.equals(email3, that.email3);
     }
 
     @Override

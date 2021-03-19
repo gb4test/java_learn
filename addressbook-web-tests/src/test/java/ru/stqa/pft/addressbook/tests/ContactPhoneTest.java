@@ -26,7 +26,7 @@ public class ContactPhoneTest extends TestBase {
                     new ContactData().withFirstname("CreatedNow").withLastname("rew").withAddress("N.n, n54")
                             .withHome_phone("255-25-25").withMobile_phone("45 33").withWork_phone("+4(664) ")
                             .withFax("4").withEmail("dfsdf@sca.adf").withEmail2("dgagddg.sdg@dsf.fgr")
-                            .withEmail3("afdf@dfda.sdv").inGroup(groups.iterator().next()), true);
+                            .withEmail3("afdf@dfda.sdv").inGroup(groups.iterator().next()));
         }
         app.goTo().home();
     }

@@ -27,7 +27,7 @@ public class ContactModificationTests extends TestBase {
               .withHome_phone("255-25-25").withMobile_phone("4533").withWork_phone("4664")
               .withFax("4").withEmail("dfsdf@sca.adf").withEmail2("dgagddg.sdg@dsf.fgr")
               .withEmail3("afdf@dfda.sdv").withPhoto(new File("src/test/resources/images.png"))
-              .inGroup(groups.iterator().next()), true);
+              .inGroup(groups.iterator().next()));
     }
   }
 

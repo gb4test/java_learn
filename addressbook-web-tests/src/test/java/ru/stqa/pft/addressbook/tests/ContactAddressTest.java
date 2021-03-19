@@ -26,7 +26,7 @@ public class ContactAddressTest extends TestBase {
                   "Londonderry BT47 2JD")
               .withHome_phone("255-25-25").withMobile_phone("45 33").withWork_phone("+4(664) ")
               .withFax("4").withEmail("dfs_df@sca.adf").withEmail2("dg-agddg.sdg@dsf.fgr")
-              .withEmail3("afdf@dfda.sdv").inGroup(groups.iterator().next()), true);
+              .withEmail3("afdf@dfda.sdv").inGroup(groups.iterator().next()));
     }
     app.goTo().home();
   }

@@ -2,25 +2,32 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 public class NavigationHelper extends HelperBase {
 
-    public NavigationHelper(WebDriver wd) { super(wd); }
+  public NavigationHelper(WebDriver wd) {
+    super(wd);
+  }
 
-    public void groupPage() {
-        if (isElementPresent(By.tagName("h1"))
-                && wd.findElement(By.tagName("h1")).getText().equals("Groups")
-                && isElementPresent(By.name("new"))) {
-            return;
-        }
-        click(By.linkText("groups"));
+  public void groupPage() {
+    if (isElementPresent(By.tagName("h1"))
+        && wd.findElement(By.tagName("h1")).getText().equals("Groups")
+        && isElementPresent(By.name("new"))) {
+      return;
     }
+    click(By.linkText("groups"));
+  }
 
-    public void homePage() { click(By.linkText("home page")); }
+  public void homePage() {
+    click(By.linkText("home page"));
+  }
 
-    public void home() {
-        if (isElementPresent(By.id("maintable"))) {
-            return;
-        }
-        click(By.linkText("home")); }
+  public void home() {
+    if (isElementPresent(By.id("maintable"))) {
+      return;
+    }
+    click(By.linkText("home"));
+  }
+
 }
