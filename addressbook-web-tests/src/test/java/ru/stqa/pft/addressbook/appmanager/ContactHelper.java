@@ -7,12 +7,13 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.List;
 
 public class ContactHelper extends HelperBase {
 
-  public void create(ContactData contact, boolean b) {
+  public void create(ContactData contact) {
     addNewContact();
     modify(contact, true);
     submitContactCreation();
@@ -58,6 +59,20 @@ public class ContactHelper extends HelperBase {
     goToHome();
   }
 
+  public void addingToGroup(ContactData contact, GroupData group) {
+    showAllContacts();
+    selectContactById(contact.getId());
+    selectGroupInList(group.getId(), group.getName());
+    addToGroup();
+    goToHome();
+  }
+
+  public void deletingFromGroup(ContactData contact, GroupData group) {
+    selectGroupFilter(group.getId(), group.getName());
+    selectContactById(contact.getId());
+    delFromGroup();
+  }
+
   public ContactHelper(WebDriver wd) {
     super(wd);
   }
@@ -82,12 +97,38 @@ public class ContactHelper extends HelperBase {
     wd.switchTo().alert().accept();
   }
 
+  public void addToGroup() { wd.findElement(By.name("add")).click(); }
+
+  public void delFromGroup() { wd.findElement(By.name("remove")).click(); }
+
+  //for connection contact to group
+  public void selectGroupInList(int id, String groupName) {
+    wd.findElement(By.name("to_group")).click();
+    new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(groupName);
+    wd.findElement(By.xpath("(//option[@value='" + id + "'])[2]")).click();
+  }
+
+  //choose group for showing connected contacts
+  public void selectGroupFilter(int id, String groupName) {
+    wd.findElement(By.name("group")).click();
+    new Select(wd.findElement(By.name("group"))).selectByVisibleText(groupName);
+    wd.findElement(By.xpath("//option[@value='" + id + "']")).click();
+  }
+
+  public void showAllContacts() {
+    wd.findElement(By.name("group")).click();
+    new Select(wd.findElement(By.name("group"))).selectByVisibleText("[all]");
+    wd.findElement(By.name("group")).click();
+  }
+
+  //for edit
   public void selectById(int id) {
     wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
   }
   // wd.findElement(By.xpath("//a[@href='edit.php?id=" + id + "']")).click();
   // wd.findElement(By.xpath(String.format("//input[@value='%s']/../../td[8]/a", id))).click();
   // wd.findElement(By.xpath(String.format("//tr[.//input[@value='%s']]/td[8]/a", id))).click();
+
 
   public void goToHomePage() {
     click(By.linkText("home page"));

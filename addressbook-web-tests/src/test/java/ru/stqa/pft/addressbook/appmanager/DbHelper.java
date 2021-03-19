@@ -21,7 +21,7 @@ public class DbHelper {
     final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
         .configure() // configures settings from hibernate.cfg.xml
         .build();
-    sessionFactory = new MetadataSources( registry ).buildMetadata().buildSessionFactory();
+    sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
   }
 
   public Groups groups() {
@@ -40,5 +40,11 @@ public class DbHelper {
     session.getTransaction().commit();
     session.close();
     return new Contacts(result);
+  }
+
+  public void refresh(Object object) {
+    Session session = sessionFactory.openSession();
+    session.refresh(object);
+    session.close();
   }
 }
