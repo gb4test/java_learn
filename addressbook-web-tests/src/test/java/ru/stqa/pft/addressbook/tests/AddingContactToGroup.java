@@ -9,6 +9,7 @@ import ru.stqa.pft.addressbook.model.Groups;
 import java.io.File;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItem;
 
 public class AddingContactToGroup extends TestBase {
@@ -18,11 +19,6 @@ public class AddingContactToGroup extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions() {
-
-    if (app.db().groups().size() == 0) {
-      app.goTo().groupPage();
-      app.group().create(new GroupData().withName("test").withHeader("test").withFooter("test"));
-    }
 
     if (app.db().contacts().size() == 0) {
       app.goTo().home();
@@ -34,13 +30,12 @@ public class AddingContactToGroup extends TestBase {
     }
 
     ContactData contact = app.db().contacts().iterator().next();
-    GroupData group = app.db().groups().iterator().next();
 
-    if (contact.getGroups().contains(group)) {
-      requiredContact = contact;
-      requiredGroup = group;
-      app.contact().deletingFromGroup(requiredContact, requiredGroup);
+    if (app.db().groups().size() == 0 | contact.getGroups().size() == app.db().groups().size()) {
+      app.goTo().groupPage();
+      app.group().create(new GroupData().withName("test405"));
     }
+
   }
 
 
@@ -57,9 +52,13 @@ public class AddingContactToGroup extends TestBase {
       }
     }
 
+
     app.contact().goToHome();
+    int before = requiredContact.getGroups().size();
     app.contact().addingToGroup(requiredContact, requiredGroup);
     app.db().refresh(contact);
+    int after = requiredContact.getGroups().size();
+    assertThat(after, equalTo(before + 1));
     assertThat(requiredContact.getGroups(), hasItem(requiredGroup));
 
   }
