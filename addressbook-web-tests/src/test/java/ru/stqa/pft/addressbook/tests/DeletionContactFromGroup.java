@@ -46,7 +46,7 @@ public class DeletionContactFromGroup extends TestBase {
       sizeList.add(contact.getGroups().size());
     }
 
-    if (Collections.max(sizeList) < app.db().groups().size()) {
+    if (Collections.max(sizeList) == 0) {
       ContactData contact = app.db().contacts().iterator().next();
       GroupData group = app.db().groups().iterator().next();
       app.contact().addingToGroup(contact, group);
