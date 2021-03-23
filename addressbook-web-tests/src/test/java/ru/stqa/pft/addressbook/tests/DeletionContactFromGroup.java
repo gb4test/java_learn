@@ -3,10 +3,13 @@ package ru.stqa.pft.addressbook.tests;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasItem;
@@ -36,32 +39,38 @@ public class DeletionContactFromGroup extends TestBase {
               .inGroup(groups.iterator().next()));
     }
 
-    ContactData contact = app.db().contacts().iterator().next();
-    GroupData group = app.db().groups().iterator().next();
-    
-    if (!contact.getGroups().contains(group)) {
-      requiredContact = contact;
-      requiredGroup = group;
-      app.contact().addingToGroup(requiredContact, requiredGroup);
+    Contacts contacts = app.db().contacts();
+    ArrayList<Integer> sizeList = new ArrayList<>();
+
+    for (ContactData contact : contacts) {
+      sizeList.add(contact.getGroups().size());
+    }
+
+    if (Collections.max(sizeList) < app.db().groups().size()) {
+      ContactData contact = app.db().contacts().iterator().next();
+      GroupData group = app.db().groups().iterator().next();
+      app.contact().addingToGroup(contact, group);
     }
   }
 
 
   @Test
-  public void testAddingContactToGroup() {
-    ContactData contact = app.db().contacts().iterator().next();
+  public void testDeletionContactToGroup() {
+    Contacts contacts = app.db().contacts();
     Groups groups = app.db().groups();
 
-    for (GroupData group : groups) {
-      if (contact.getGroups().contains(group)) {
-        requiredContact = contact;
-        requiredGroup = group;
+    for (ContactData contact : contacts) {
+      for (GroupData group : groups) {
+        if (contact.getGroups().contains(group)) {
+          requiredContact = contact;
+          requiredGroup = group;
+        }
       }
     }
 
     app.contact().goToHome();
     app.contact().deletingFromGroup(requiredContact, requiredGroup);
-    app.db().refresh(contact);
+    app.db().refresh(requiredContact);
     assertThat(requiredContact.getGroups(), not(hasItem(requiredGroup)));
 
   }
