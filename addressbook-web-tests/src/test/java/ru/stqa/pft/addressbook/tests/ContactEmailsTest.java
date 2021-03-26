@@ -6,6 +6,7 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
@@ -26,7 +27,8 @@ public class ContactEmailsTest extends TestBase {
                     new ContactData().withFirstname("CreatedNow").withLastname("rew").withAddress("N.n, n54")
                             .withHome_phone("255-25-25").withMobile_phone("45 33").withWork_phone("+4(664) ")
                             .withFax("4").withEmail("dfs_df@sca.adf").withEmail2("dg-agddg.sdg@dsf.fgr")
-                            .withEmail3("afdf@dfda.sdv").inGroup(groups.iterator().next()));
+                            .withEmail3("afdf@dfda.sdv").withPhoto(new File("src/test/resources/images.png"))
+                        .inGroup(groups.iterator().next()));
         }
         app.goTo().home();
     }
