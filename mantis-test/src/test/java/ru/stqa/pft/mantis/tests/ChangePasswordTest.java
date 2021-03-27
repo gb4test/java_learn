@@ -30,7 +30,6 @@ public class ChangePasswordTest extends TestBase {
 
     app.admin().login(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"));
     app.admin().resetPassword(user);
-    //app.admin().logout();
     List<MailMessage> mailMessages = app.mail().waitForMail(1, 15000);
     String confirmationLink = findConfirmationLink(mailMessages, email);
     app.admin().changePassword(confirmationLink, userName, newPassword);
