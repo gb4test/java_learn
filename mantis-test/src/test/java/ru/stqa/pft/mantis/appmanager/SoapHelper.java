@@ -45,9 +45,12 @@ public class SoapHelper {
     BigInteger issueId = mc.mc_issue_add("administrator", "root", issueData);
     IssueData createdIssueData = mc.mc_issue_get("administrator", "root", issueId);
 
-    return new Issue().withId(createdIssueData.getId().intValue())
-        .withSummary(createdIssueData.getSummary()).withDescription(createdIssueData.getDescription())
-        .withProject(new Project().withId(createdIssueData.getProject().getId().intValue())
+    return new Issue()
+        .withId(createdIssueData.getId().intValue())
+        .withSummary(createdIssueData.getSummary())
+        .withDescription(createdIssueData.getDescription())
+        .withProject(new Project()
+            .withId(createdIssueData.getProject().getId().intValue())
             .withName(createdIssueData.getProject().getName()));
   }
 

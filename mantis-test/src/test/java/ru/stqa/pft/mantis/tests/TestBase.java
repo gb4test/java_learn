@@ -49,4 +49,17 @@ public class TestBase {
     logger.info("Stop test " + m.getName());
   }
 
+  public boolean isIssueOpen(int issueId) throws RemoteException, ServiceException, MalformedURLException {
+    IssueData issue = app.soap().getIssue(issueId);
+    if (issue.getStatus().getName().equals("resolved") || issue.getStatus().getName().equals("closed")) {
+      return false;
+    }
+    return true;
+  }
+
+  public void skipIfNotFixed(int issueId) throws RemoteException, ServiceException, MalformedURLException {
+    if (isIssueOpen(issueId)) {
+      throw new SkipException("Ignored because of issue " + issueId);
+    }
+  }
 }
