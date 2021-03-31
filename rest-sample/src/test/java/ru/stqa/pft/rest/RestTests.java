@@ -8,6 +8,7 @@ import org.apache.http.client.fluent.Executor;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.message.BasicNameValuePair;
 import org.testng.annotations.Test;
+import ru.stqa.pft.rest.model.Issue;
 
 import java.io.IOException;
 import java.util.Set;
@@ -37,7 +38,6 @@ public class RestTests {
     String json = getExecutor().execute(Request.Get("http://demo.bugify.com/api/issues.json"))
         .returnContent().asString();
     JsonElement parsed = new JsonParser().parse(json);
-    JsonElement issues = parsed.getAsJsonObject().get("issues");
     int total = parsed.getAsJsonObject().get("total").getAsInt();
     return total;
   }
